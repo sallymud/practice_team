@@ -45,4 +45,4 @@ class LoginUser(LoginView):
 
 
 def Homepage(request):
-    return render(request, 'users/homepage.html')
+    return render(request, 'main/homepage.html')
