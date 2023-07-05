@@ -8,6 +8,9 @@ def home(request):
 def about(request):
     return render(request, 'main/about.html')
 
+def account(request):
+    return render(request, 'main/account.html')
+
 def LogoutUser(request):
     logout(request)
     return redirect('/')

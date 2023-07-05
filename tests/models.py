@@ -6,6 +6,10 @@ class TestMake(models.Model):
     def __str__(self):
         return self.test_title
 
+    class Meta:
+        verbose_name = 'Тест'
+        verbose_name_plural = 'Тесты'
+
 
 class Question(models.Model):
     testmakers = models.ForeignKey(TestMake, on_delete=models.CASCADE)
@@ -15,6 +19,9 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -23,3 +30,7 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.answer_text
+
+    class Meta:
+        verbose_name = 'Ответ'
+        verbose_name_plural = 'Ответы'
