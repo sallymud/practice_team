@@ -2,41 +2,65 @@ body {
     background: #b7d0f7;
 }
 
+/* Боковая панель */
 aside {
-    float: left;
+    position: fixed;
     background: #0e3d8a;
-    width: 20%;
-    padding: 3.5%;
+    width: 15%;;
+    padding: 2%;
     text-decoration: none;
-    height: 100vh;
+    height: 100%;
     color: #fff;
     border-right: 5px solid #0e3c87;
 }
 
+/* Навигация */
 aside h3 {
-    margin-top: 30px;
+    position: absolute;
+    top: 15%;
     font-size: 28px;
 }
 
+/* Имя пользователя */
 aside h5 {
-    margin: 580px auto 10px 30px;
+    position: absolute;
+    bottom: 10%;
     font-size: 17px;
 }
 
-aside ul, ol {list-style: none}
-aside a {text-decoration: none}
+/* Блок с перечислением вкладок: Главная, Тесты, Контакты */
+aside ul {
+    list-style: none;
+    position: absolute;
+    top: 20%;
+}
+
+/* Элементы блока */
 aside ul li {
     color: #ffffff;
     display: block;
     margin-top: 20px;
     transition: transform .6s ease;
 }
+
+/* Ссылки */
+aside a {text-decoration: none}
+
+/* Элементы блока при наведении */
 aside ul li:hover, aside ul a:hover, ol li:hover, aside ol a:hover {
     color: #7b9dd4;
     text-decoration: none;
     transform: scale(1.05);
 }
 
+/* Блок с перечислением вкладок: Профиль, Выход */
+aside ol {
+    list-style: none;
+    position: absolute;
+    bottom: 2%;
+}
+
+/* Элементы блока */
 aside ol li {
     color: #ffffff;
     display: block;
@@ -44,18 +68,24 @@ aside ol li {
     transition: transform .6s ease;
 }
 
+/* Основная часть страницы */
 main .features {
-    float: left;
+    float: right;
     margin-top: 70px;
     margin-left: 45px;
     text-align: center;
-    width: 75%;
+    width: 82%;
 }
+
+/* Главный текст */
 main .features h1 {font-size: 50px;}
+
+/* Побочный текст */
 main .features p {
     max-width: 400px;
     margin: 20px auto;
 }
+
 
 main .features form {
     margin-left: 32%;
