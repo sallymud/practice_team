@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Вопрос</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .question {
+            margin: 20px auto;
+            max-width: 500px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .option {
+            margin: 10px 0;
+        }
+        
+        .option input {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ответье на вопрос ниже, выбрав один из вариантов</h1>
+    <div class="question">
+        <p>Кто такой Билли?</p>
+        <ul class="options">
+            <li class="option">
+                <input type="radio" name="answer" id="option1" value="1">
+                <label for="option1">Джин</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" id="option2" value="2">
+                <label for="option2">Айлиш</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" id="option3" value="3">
+                <label for="option3">Херрингтон</label>
+            </li>
+            <li class="option">
+                <input type="radio" name="answer" id="option4" value="4">
+                <label for="option4">Я</label>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
