@@ -1,0 +1,30 @@
+body {
+    background: #b7d0f7;
+}
+
+.square {
+    width: 30%;
+    height: 30vw;
+    background-color: #0e3d8a;
+    border-radius: 10%;
+    position: relative;
+    margin-top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input_form {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+h6 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}

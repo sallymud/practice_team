@@ -1,3 +1,6 @@
+{% extends "users/layout.html" %}
+{% load static %}
+
 {% block content %}
 <form method="POST" action="{% url 'Sign_In' %}">
     {% csrf_token %}
@@ -16,4 +19,5 @@
 
 </form>
 <h6>Нет аккаунта?<a href="registration">Регистрация</a></h6>
+<div class="square"></div>
 {% endblock %}
