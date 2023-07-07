@@ -9,7 +9,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 def account(request):
-    return render(request, 'main/account.html')
+    return render(request, 'account/profile.html')
 
 def LogoutUser(request):
     logout(request)

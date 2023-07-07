@@ -13,28 +13,24 @@ aside {
     color: #fff;
     border-right: 5px solid #0e3c87;
 }
-
 /* Навигация */
 aside h3 {
     position: absolute;
     top: 15%;
     font-size: 28px;
 }
-
 /* Имя пользователя */
 aside h5 {
     position: absolute;
     bottom: 10%;
     font-size: 17px;
 }
-
 /* Блок с перечислением вкладок: Главная, Тесты, Контакты */
 aside ul {
     list-style: none;
     position: absolute;
     top: 20%;
 }
-
 /* Элементы блока */
 aside ul li {
     color: #ffffff;
@@ -42,24 +38,20 @@ aside ul li {
     margin-top: 20px;
     transition: transform .6s ease;
 }
-
 /* Ссылки */
 aside a {text-decoration: none}
-
 /* Элементы блока при наведении */
 aside ul li:hover, aside ul a:hover, ol li:hover, aside ol a:hover {
     color: #7b9dd4;
     text-decoration: none;
     transform: scale(1.05);
 }
-
 /* Блок с перечислением вкладок: Профиль, Выход */
 aside ol {
     list-style: none;
     position: absolute;
     bottom: 2%;
 }
-
 /* Элементы блока */
 aside ol li {
     color: #ffffff;
@@ -67,6 +59,9 @@ aside ol li {
     margin-top: 10px;
     transition: transform .6s ease;
 }
+
+
+
 
 /* Основная часть страницы */
 main .features {
@@ -76,19 +71,78 @@ main .features {
     text-align: center;
     width: 82%;
 }
-
 /* Главный текст */
 main .features h1 {font-size: 50px;}
-
-/* Побочный текст */
+/* Побочный текст  ПОТОМ УДАЛИМ*/
 main .features p {
     max-width: 400px;
     margin: 20px auto;
 }
-
+/*список в профиле*/
+main .features ul {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    text-align: right;
+    width: 16%;
+    height: 37%;
+}
+/*элементы списка в профиле*/
+main .features ul h5 {
+    display: block;
+    margin-top: 30px;
+}
+/*поля ввода в профиле*/
+main .features ol {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    text-align: center;
+    width: 20%;
+    height: 37%;
+}
+/*каждое поле в профиле*/
+main .features ol input {
+    display: block;
+    margin-top: 25px;
+}
 
 main .features form {
     margin-left: 32%;
     width: 500px;
     margin-top: 30px;
+}
+
+.messages {
+    position: absolute;
+    top: 1%;
+    left: 80%;
+    right: 1%;
+    background-color: #11ffee00;
+    color: white;
+    padding: 5px;
+    align-items: center;
+    border-radius: 5px;
+    list-style: none;
+}
+
+.error {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #DC3545;
+}
+
+.success {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #198754;
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: white;
 }

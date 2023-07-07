@@ -1,32 +1,29 @@
+{% extends 'main/layout.html' %}
+
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-<div>
-<img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
-
-<p>Логин</p>
-<input readonly type="text" id="username" name="Фамилия" value="{{user.username}}">
-
-<p>Фамилия</p>
-<input readonly type="text" id="last_name" name="Фамилия" value="{{user.last_name}}">
-
-<p>Имя</p>
-<input readonly type="text" id="first_name" name="Имя" value="{{user.first_name}}">
-
-<p>Отчество</p>
-<input readonly type="text" id="surname" name="Отчество" value="{{user.surname}}">
-
-<p>Дата рождения</p>
-<input readonly type="text" id="birthday_date" name="Имя" value="{{user.birthday_date}}">
-
-<p>E-mail</p>
-<input readonly type="text" id="email" name="Почта" value="{{user.email}}" color="black">
-
-    <a href="profile-changed">Редактировать профиль</a><br>
-    <a href="{% url 'password_change' %}">Смена пароля</a>
-</div>
-
-
-{% endif %}
+    {% if user.is_authenticated %}
+        <div class="features">
+            <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
+            <ul>
+                <h5>Логин</h5>
+                <h5>Фамилия</h5>
+                <h5>Имя</h5>
+                <h5>Отчество</h5>
+                <h5>Дата рождения</h5>
+                <h5>E-mail</h5>
+            </ul>
+            <ol>
+                <input readonly type="text" id="username" name="Фамилия" value="{{user.username}}">
+                <input readonly type="text" id="last_name" name="Фамилия" value="{{user.last_name}}">
+                <input readonly type="text" id="first_name" name="Имя" value="{{user.first_name}}">
+                <input readonly type="text" id="surname" name="Отчество" value="{{user.surname}}">
+                <input readonly type="text" id="birthday_date" name="Имя" value="{{user.birthday_date}}">
+                <input readonly type="text" id="email" name="Почта" value="{{user.email}}" color="black">
+            </ol>
+            <a href="profile-changed">Редактировать профиль</a>
+            <a href="{% url 'password_change' %}">Смена пароля</a>
+        </div>
+    {% endif %}
 {% endblock %}

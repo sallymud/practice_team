@@ -3,12 +3,19 @@
 {% block title %}Форма по созданию теста{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}  <span class="close-btn" onclick="this.parentElement.style.display = 'none';">&times;</span></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="features">
         <h1>Форма по созданию теста</h1>
         <form method ="post">
             {% csrf_token %}
-            {{ form.test_title }}<br>
-            <span>{{ errror }}</span>
+            {{ form.test_title }}
+            <br>
             <button class="btn btn-success" type="submit">Сохранить</button>
         </form>
     </div>

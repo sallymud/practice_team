@@ -1,26 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TestMake, Question, Answer
 from .forms import TestForm
+from django.contrib import messages
 
 def tests_home(request):
     return render(request, 'tests/tests_home.html')
 
 def create(request):
-    error = ''
     if request.method == 'POST':
-        form = TestForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        test_title = request.POST.get('test_title')
+        if TestMake.objects.filter(test_title=test_title).exists():
+            # Значение уже существует, выдать ошибку
+            messages.error(request, 'Тест с таким названием уже существует!')
+            return redirect('create')
         else:
-            error = 'Форма была неверной'
-
+            # Значение уникальное, сохранить в базу данных
+            test = TestMake(test_title=test_title)  # создаем экземпляр модели
+            test.save()  # сохраняем в базу данных
+            messages.success(request, 'Тест успешно создан')
+            return redirect('create')
     form = TestForm()
-    data = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'tests/create.html', data)
+    return render(request, 'tests/create.html', {'form': form})
 
 def test_list(request):
     tests = TestMake.objects.all()
