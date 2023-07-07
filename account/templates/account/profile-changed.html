@@ -1,0 +1,35 @@
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div>
+    {{ profile_form.avatar }}
+<img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
+
+<p>Логин</p>
+{{user.username}}
+
+<p>Фамилия</p>
+{{user_form.last_name}}
+
+<p>Имя</p>
+{{user_form.first_name}}
+
+<p>Отчество</p>
+{{user_form.surname}}
+
+<p>Дата рождения</p>
+{{user_form.birthday_date}}
+
+<p>E-mail</p>
+{{user_form.email}}
+
+<button type="submit" class="btn-primary">Сохранить изменения</button>
+<button type="reset" class="btn-primary">Сбросить</button>
+</div>
+</form>
+
+{% endif %}
+{% endblock %}
