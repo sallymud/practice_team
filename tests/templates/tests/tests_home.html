@@ -5,6 +5,7 @@
 {% block content %}
     <div class="features">
         <h1>Тест</h1>
-        <a href="{% url 'create' %}"><button type="button" class="btn btn-info"> Создать тест</button></a>
+        <a href="{% url 'test_list' %}"><button type="button" class="btn btn-info">Список тестов</button></a>
+        <a href="{% url 'create' %}"><button type="button" class="btn btn-info">Создать тест</button></a>
     </div>
 {% endblock %}

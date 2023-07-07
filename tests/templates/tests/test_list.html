@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Список тестов{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Список тестов</h1>
+        <ul>
+            {% for test in tests %}
+                <li><a href="{% url 'test_detail' test.id %}">{{ test.test_title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

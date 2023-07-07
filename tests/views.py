@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Question, Answer
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import TestMake, Question, Answer
 from .forms import TestForm
 
 def tests_home(request):
@@ -21,6 +21,25 @@ def create(request):
         'error': error
     }
     return render(request, 'tests/create.html', data)
+
+def test_list(request):
+    tests = TestMake.objects.all()
+    return render(request, 'tests/test_list.html', {'tests': tests})
+
+def test_detail(request, test_id):
+    test = get_object_or_404(TestMake, id=test_id)
+    questions = Question.objects.filter(testmakers=test)
+
+    if request.method == 'POST':
+        for question in questions:
+            answer_id = request.POST.get('questiom_{}'.format(question.id))
+            answer = get_object_or_404(Answer, id=answer_id)
+            # Обработка ответа пользователя
+    data = {
+        'tests': test,
+        'questions': questions
+    }
+    return render(request, 'tests/test_detail.html', data)
 
 
 

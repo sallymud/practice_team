@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class TestMake(models.Model):
     test_title = models.CharField('Название теста', max_length=100)
