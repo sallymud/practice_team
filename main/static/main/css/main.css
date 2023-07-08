@@ -113,6 +113,7 @@ main .features form {
     margin-top: 30px;
 }
 
+/*Уведомления*/
 .messages {
     position: absolute;
     top: 1%;
@@ -145,4 +146,63 @@ main .features form {
 
 .close-btn:hover {
     color: white;
+}
+
+
+/*Таблица тестов*/
+.table {
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 8%;
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+  border-bottom: 1px solid #0e3d8a;
+}
+
+.table thead th {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #0e3d8a;
+  color: #ffffff;
+  font-size: 14px;
+  border: none;
+}
+.table thead th:first-child {
+    border-top-left-radius: 20px;
+
+}
+
+.table thead th:last-child {
+    border-top-right-radius: 20px;
+}
+
+.table tbody td {
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #0e3d8a;
+}
+.table tbody td:last-child {
+    border-right: 1px solid #0e3d8a;
+}
+.table tbody tr:nth-child(even) {
+  background-color: #fffafe;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #eaf2ff;
+}
+
+.table a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.table a:hover {
+  color: #0e3d8a;
+  text-decoration: underline;
 }

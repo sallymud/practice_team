@@ -4,11 +4,21 @@
 
 {% block content %}
     <div class="features">
-        <h1>Список тестов</h1>
-        <ul>
-            {% for test in tests %}
-                <li><a href="{% url 'test_detail' test.id %}">{{ test.test_title }}</a></li>
-            {% endfor %}
-        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Доступные тесты</th>
+                    <th>Баллы</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in tests %}
+                    <tr>
+                        <td><a href="{% url 'test_detail' test.id %}">{{ test.test_title }}</a></td>
+                        <td>{{ test.points }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
