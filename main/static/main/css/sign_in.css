@@ -1,5 +1,8 @@
 body {
     background: #b7d0f7;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 .square {
@@ -7,11 +10,12 @@ body {
     height: 30vw;
     background-color: #0e3d8a;
     border-radius: 10%;
-    position: relative;
+    position: absolute;
     margin-top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .input_form {
     color: white;
     z-index: 1;
@@ -57,9 +61,10 @@ h6 {
     z-index: 1;
 }
 
-a:visited {
-    color: white;
-}
+a {color:white}
+a:link {color: white;}
+a:hover {color: white;}
+a:focus {color: white;}
 
 .form-control {
     position: relative;
@@ -72,7 +77,6 @@ a:visited {
 
 .form-error {
     position: absolute;
-    color: white;
     width: 25%;
     line-height: 120%;
     top: 50%;
@@ -80,3 +84,4 @@ a:visited {
     transform: translate(-50%, -50%);
     z-index: 1;
 }
+

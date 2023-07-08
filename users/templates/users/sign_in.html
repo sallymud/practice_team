@@ -1,6 +1,12 @@
 {% extends "users/layout.html" %}
 {% load static %}
 
+{% block sign_in %}
+<link rel="stylesheet" href="{% static 'main/css/sign_in.css' %}">
+{% endblock %}
+
+{% block title %}Вход{% endblock %}
+
 {% block content %}
 <form method="POST" action="{% url 'Sign_In' %}">
     {% csrf_token %}

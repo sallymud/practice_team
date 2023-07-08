@@ -1,13 +1,24 @@
+{% extends "users/layout.html" %}
+{% load static %}
+
+{% block sign_up %}
+<link rel="stylesheet" href="{% static 'main/css/sign_up.css' %}">
+{% endblock %}
+
+{% block title %}Регистрация{% endblock %}
+
 {% block content %}
 <form method="POST" action="{% url 'Sign_Up' %}">
     {% csrf_token %}
     {{form}}
             <div class="input_form">
-                <input name="registration" type="submit" value="Зарегистрироваться" class="btn-primary" href="/">
+                <input name="registration" type="submit" value="Зарегистрироваться" class="btn" href="/">
             </div>
         <h6><a href="/">Войти</a></h6>
         </div>
 
     </div>
 </form>
+
+<div class="square"></div>
 {% endblock %}

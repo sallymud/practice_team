@@ -38,11 +38,9 @@ class SignUpView(CreateView):
         context = {'form': form}
         return render(request, 'users/sign_up.html', context)
 
-
 class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'users/sign_in.html'
-
 
 def Homepage(request):
     return render(request, 'main/homepage.html')
