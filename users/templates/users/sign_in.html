@@ -8,16 +8,17 @@
 <div class="form-error">{{form.non_field_errors}}</div>
 
 {% for f in form %}
-<p><label class="form-label" for="{{ f.if_for_label }}">{{f.label}}:</label>{{ f }}</p>
+<p><label class="form-label" for="{{ f.if_for_label }}">{{f.label}}</label>{{ f }}</p>
 <div class="form-error">{{f.errors}}</div>
 {% endfor %}
 
      <div class="input_form">
-                <input name="login" type="submit" value="Авторизоваться" class="btn-primary" href="">
+                <input name="login" type="submit" value="Авторизоваться" class="btn" href="main/css/sign_in.css">
             </div>
       </div>
 
 </form>
-<h6>Нет аккаунта?<a href="registration">Регистрация</a></h6>
+<h6>Нет аккаунта? <a href="registration">Регистрация</a></h6>
+
 <div class="square"></div>
 {% endblock %}

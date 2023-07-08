@@ -12,18 +12,70 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .input_form {
+    color: white;
+    z-index: 1;
+}
+.input_form:hover {
+  background: #1d49aa;
+}
+.input_form:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #cbd6ee;
+}
+
+.btn {
     position: absolute;
-    top: 65%;
+    min-width: 100px;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #4676d7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 1rem;
+    color: white;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.btn:hover {
+  background: #1d49aa;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #cbd6ee;
+}
+
+h6 {
+    position: absolute;
+    color: white;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
 
-h6 {
+a:visited {
+    color: white;
+}
+
+.form-control {
+    position: relative;
+    width: 25%;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.form-error {
     position: absolute;
-    top: 70%;
+    color: white;
+    width: 25%;
+    line-height: 120%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
