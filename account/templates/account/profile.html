@@ -3,6 +3,13 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}  <span class="close-btn" onclick="this.parentElement.style.display = 'none';">&times;</span></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% if user.is_authenticated %}
         <div class="features">
             <div>
@@ -17,15 +24,17 @@
                 <h5>E-mail</h5>
             </ul>
             <ol>
-                <input readonly type="text" id="username" name="Имя пользователя" value="{{user.username}}">
-                <input readonly type="text" id="last_name" name="Фамилия" value="{{user.last_name}}">
-                <input readonly type="text" id="first_name" name="Имя" value="{{user.first_name}}">
-                <input readonly type="text" id="surname" name="Отчество" value="{{user.surname}}">
-                <input readonly type="text" id="birthday_date" name="Дата рождения" value="{{user.birthday_date}}">
-                <input readonly type="text" id="email" name="Почта" value="{{user.email}}" color="black">
+                <input class="form-control" type="text" id="username" name="Имя пользователя" value="{{user.username}}" disabled readonly>
+                <input class="form-control" type="text" id="last_name" name="Фамилия" value="{{user.last_name}}" disabled readonly>
+                <input class="form-control" type="text" id="first_name" name="Имя" value="{{user.first_name}}" disabled readonly>
+                <input class="form-control" type="text" id="surname" name="Отчество" value="{{user.surname}}" disabled readonly>
+                <input class="form-control" type="text" id="birthday_date" name="Дата рождения" value="{{user.birthday_date}}" disabled readonly>
+                <input class="form-control" type="text" id="email" name="Почта" value="{{user.email}}" disabled readonly>
             </ol>
-            <a href="profile-changed">Редактировать профиль</a>
-            <a href="{% url 'password_change' %}">Смена пароля</a>
+            <div class="button-container">
+                <a href="profile-changed"><button type="button" class="btn btn-info">Редактировать профиль</button></a>
+                <a href="{% url 'password_change' %}"><button type="button" class="btn btn-info">Смена пароля</button></a>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

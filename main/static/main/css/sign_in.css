@@ -47,8 +47,8 @@ body {
 .btn:hover {
   background: #1d49aa;
 }
-.btn:focus {
-  outline: none;
+.btn:active {
+  background: #1d49aa;
   box-shadow: 0 0 0 1px #cbd6ee;
 }
 

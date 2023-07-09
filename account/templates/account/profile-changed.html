@@ -2,33 +2,39 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}  <span class="close-btn" onclick="this.parentElement.style.display = 'none';">&times;</span></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% if user.is_authenticated %}
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="features">
                 {{ profile_form.avatar }}
                 <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}"/>
-
-                <p>Логин</p>
-                {{user.username}}
-
-                <p>Фамилия</p>
-                {{user_form.last_name}}
-
-                <p>Имя</p>
-                {{user_form.first_name}}
-
-                <p>Отчество</p>
-                {{user_form.surname}}
-
-                <p>Дата рождения</p>
-                {{user_form.birthday_date}}
-
-                <p>E-mail</p>
-                {{user_form.email}}
-
-                <button type="submit" class="btn-primary">Сохранить изменения</button>
-                <button type="reset" class="btn-primary">Сбросить</button>
+                <ul>
+                    <h5>Логин</h5>
+                    <h5>Фамилия</h5>
+                    <h5>Имя</h5>
+                    <h5>Отчество</h5>
+                    <h5>Дата рождения</h5>
+                    <h5>E-mail</h5>
+                </ul>
+                <ol>
+                    <input class="form-control" type="text" id="username" name="Имя пользователя" value="{{user.username}}" disabled readonly>
+                    {{user_form.last_name}}
+                    {{user_form.first_name}}
+                    {{user_form.surname}}
+                    {{user_form.birthday_date}}
+                    {{user_form.email}}
+                </ol>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-success">Сохранить изменения</button>
+                    <button type="reset" class="btn btn-danger">Сбросить</button>
+                </div>
             </div>
         </form>
 

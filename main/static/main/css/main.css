@@ -78,40 +78,7 @@ main .features p {
     max-width: 400px;
     margin: 20px auto;
 }
-/*список в профиле*/
-main .features ul {
-    position: absolute;
-    top: 20%;
-    left: 35%;
-    text-align: right;
-    width: 16%;
-    height: 37%;
-}
-/*элементы списка в профиле*/
-main .features ul h5 {
-    display: block;
-    margin-top: 30px;
-}
-/*поля ввода в профиле*/
-main .features ol {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    text-align: center;
-    width: 20%;
-    height: 37%;
-}
-/*каждое поле в профиле*/
-main .features ol input {
-    display: block;
-    margin-top: 25px;
-}
 
-main .features form {
-    margin-left: 32%;
-    width: 500px;
-    margin-top: 30px;
-}
 
 /*Уведомления*/
 .messages {
@@ -148,6 +115,17 @@ main .features form {
     color: white;
 }
 
+button.btn.btn-info {
+    background-color: #0e3d8a;
+    color: white;
+    border-color: #0e3d8a;
+}
+
+button.btn.btn-info:active {
+    background-color: #0b3373;
+    color: white;
+    border-color: #0b3373;
+}
 
 /*Таблица тестов*/
 .table {
@@ -172,6 +150,7 @@ main .features form {
 }
 .table thead th:first-child {
     border-top-left-radius: 20px;
+    border-right: 1px solid #fffafe;
 
 }
 
@@ -205,4 +184,61 @@ main .features form {
 .table a:hover {
   color: #0e3d8a;
   text-decoration: underline;
+}
+
+/*авватарка*/
+main .features img {
+    width: 15%;
+    margin-right: 65%;
+}
+/*список в профиле*/
+main .features ul {
+    position: absolute;
+    top: 31%;
+    left: 34%;
+    text-align: right;
+    width: 16%;
+    height: 40%;
+}
+/*элементы списка в профиле*/
+main .features ul h5 {
+    display: block;
+    margin-top: 43px;
+}
+/*поля ввода в профиле*/
+main .features ol {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    text-align: center;
+    width: 17%;
+    height: 35%;
+}
+/*каждое поле в профиле*/
+main .features ol input {
+    display: block;
+    margin-top: 31px;
+    height: 11%;
+}
+
+main .features input.form-control#inputGroupFile02 {
+    position: absolute;
+    top: 18%;
+    left: 44%;
+    width: 29%;
+}
+
+.button-container button.btn.btn-info {
+    padding-right: 10px;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 7%;
+    right: 7%;
+    display: inline-block;
+}
+
+.button-container button.btn.btn-info:not(:last-child) {
+    margin-right: 10px;
 }

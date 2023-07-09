@@ -16,7 +16,7 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class UpdateAccountForm(forms.ModelForm):
-    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control', 'id': 'inputGroupFile02'}))
 
     class Meta:
         model = Account

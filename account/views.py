@@ -17,11 +17,14 @@ def profile(request):
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateAccountForm(request.POST, request.FILES, instance=request.user.account)
 
+
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, f'Изменения в профиле были сохранены.')
+            messages.success(request, 'Изменения в профиле были сохранены.')
             return redirect('profile')
+        if not(user_form.is_valid() and profile_form.is_valid()):
+            messages.error(request, 'Введенные данные некорректны!')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateAccountForm(instance=request.user.account)
