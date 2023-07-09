@@ -127,6 +127,13 @@ button.btn.btn-info:active {
     border-color: #0b3373;
 }
 
+main .features input.form-control#id_test_title {
+    position: absolute;
+    top: 16%;
+    left: 40%;
+    width: 38.2%;
+}
+
 /*Таблица тестов*/
 .table {
   width: 80%;
@@ -188,13 +195,14 @@ button.btn.btn-info:active {
 
 /*авватарка*/
 main .features img {
-    width: 15%;
+    width: 250px;
+    height: 250px;
     margin-right: 65%;
 }
 /*список в профиле*/
 main .features ul {
     position: absolute;
-    top: 31%;
+    top: 31.2%;
     left: 34%;
     text-align: right;
     width: 16%;
@@ -217,7 +225,7 @@ main .features ol {
 /*каждое поле в профиле*/
 main .features ol input {
     display: block;
-    margin-top: 31px;
+    margin-top: 30.2px;
     height: 11%;
 }
 
