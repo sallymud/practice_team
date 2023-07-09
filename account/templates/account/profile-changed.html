@@ -7,7 +7,7 @@
             {% csrf_token %}
             <div class="features">
                 {{ profile_form.avatar }}
-                <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
+                <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}"/>
 
                 <p>Логин</p>
                 {{user.username}}

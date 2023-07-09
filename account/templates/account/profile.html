@@ -5,7 +5,9 @@
 {% block content %}
     {% if user.is_authenticated %}
         <div class="features">
-            <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
+            <div>
+                <img class="rounded-circle article-img" src="{{ user.account.avatar.url }}">
+            </div>
             <ul>
                 <h5>Логин</h5>
                 <h5>Фамилия</h5>
@@ -15,11 +17,11 @@
                 <h5>E-mail</h5>
             </ul>
             <ol>
-                <input readonly type="text" id="username" name="Фамилия" value="{{user.username}}">
+                <input readonly type="text" id="username" name="Имя пользователя" value="{{user.username}}">
                 <input readonly type="text" id="last_name" name="Фамилия" value="{{user.last_name}}">
                 <input readonly type="text" id="first_name" name="Имя" value="{{user.first_name}}">
                 <input readonly type="text" id="surname" name="Отчество" value="{{user.surname}}">
-                <input readonly type="text" id="birthday_date" name="Имя" value="{{user.birthday_date}}">
+                <input readonly type="text" id="birthday_date" name="Дата рождения" value="{{user.birthday_date}}">
                 <input readonly type="text" id="email" name="Почта" value="{{user.email}}" color="black">
             </ol>
             <a href="profile-changed">Редактировать профиль</a>
