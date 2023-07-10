@@ -203,7 +203,7 @@ main .features img {
 main .features ul {
     position: absolute;
     top: 31.2%;
-    left: 34%;
+    left: 40%;
     text-align: right;
     width: 16%;
     height: 40%;
@@ -217,7 +217,7 @@ main .features ul h5 {
 main .features ol {
     position: absolute;
     top: 32%;
-    left: 50%;
+    left: 56%;
     text-align: center;
     width: 17%;
     height: 35%;
@@ -249,4 +249,16 @@ main .features input.form-control#inputGroupFile02 {
 
 .button-container button.btn.btn-info:not(:last-child) {
     margin-right: 10px;
+}
+
+.form-error {
+    position: absolute;
+    width: 25%;
+    line-height: 120%;
+    top: 60%;
+    left: 47%;
+}
+
+.form-error ul li {
+    margin-bottom: 10px;
 }

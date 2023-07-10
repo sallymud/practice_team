@@ -17,7 +17,7 @@ def create(request):
             # Значение уникальное, сохранить в базу данных
             test = TestMake(test_title=test_title)  # создаем экземпляр модели
             test.save()  # сохраняем в базу данных
-            messages.success(request, 'Тест успешно создан')
+            messages.success(request, 'Тест успешно создан.')
             return redirect('create')
     form = TestForm()
     return render(request, 'tests/create.html', {'form': form})
