@@ -5,6 +5,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from users.forms import Registration, LoginUserForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Profile
 
 
 class SignUpView(CreateView):
@@ -44,3 +47,23 @@ class LoginUser(LoginView):
 
 def Homepage(request):
     return render(request, 'main/homepage.html')
+
+# Составитель тестов
+@login_required
+def test_creator(request):
+    if request.method == 'POST':
+        # Обработка создания тестов
+        pass
+    return render(request, 'tests')
+
+# Студент
+@login_required
+def test_taker(request):
+    # Вывод доступных тестов и обработка прохождения теста
+    return render(request, 'tests/')
+
+# Преподаватель
+@login_required
+def test_grader(request):
+    # Вывод тестов, ожидающих оценки, и обработка оценки теста
+    return render(request, 'tests/')
