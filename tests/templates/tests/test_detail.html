@@ -17,7 +17,8 @@
         {% endfor %}
         <br>
       {% endfor %}
-      <input type="submit" value="Завершить тест">
+
+      <a href="{% url 'test_results' test_id=test_id %}" class="button">Завершить тест</a>
     </form>
   </div>
 {% endblock %}

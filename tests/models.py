@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class TestMake(models.Model):
     test_title = models.CharField('Название теста', max_length=100)
@@ -35,3 +36,16 @@ class Answer(models.Model):
     class Meta:
         verbose_name = 'Ответ'
         verbose_name_plural = 'Ответы'
+
+class Results(models.Model):
+    au_user = settings.AUTH_USER_MODEL
+    user = models.ForeignKey(au_user, on_delete=models.CASCADE)
+    test = models.ForeignKey(TestMake, on_delete=models.CASCADE)
+    score = models.IntegerField()
+
+    def __str__(self):
+        return "{} - {} - {}".format(self.user, self.test, self.score)
+
+    class Meta:
+        verbose_name = 'Результат'
+        verbose_name_plural = 'Результаты'

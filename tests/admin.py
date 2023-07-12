@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TestMake, Question, Answer
+from .models import TestMake, Question, Answer, Results
 
 admin.site.register(TestMake)
 
@@ -11,3 +11,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer)
+admin.site.register(Results)
