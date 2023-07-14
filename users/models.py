@@ -5,6 +5,8 @@ from django.db import models
 class CustomUser(AbstractUser):
     surname = models.CharField('Отчество', max_length=25, default='')
     birthday_date = models.DateField('День рождения', null=True)
+    creator = models.BooleanField('Составитель тестов', default=False)
+    teacher = models.BooleanField('Преподаватель', default=False)
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
