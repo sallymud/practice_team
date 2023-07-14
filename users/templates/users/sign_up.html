@@ -12,10 +12,10 @@
         <form method="POST" action="{% url 'Sign_Up' %}">
             {% csrf_token %}
             {{form}}
-        </form>
         <div class="input_form">
                 <input name="registration" type="submit" value="Зарегистрироваться" class="btn" href="/">
         </div>
         <h6><a href="/">Войти</a></h6>
+        </form>
     </div>
 {% endblock %}
