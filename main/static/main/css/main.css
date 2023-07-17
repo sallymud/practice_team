@@ -133,6 +133,42 @@ main .features input.form-control#id_test_title {
     left: 40%;
     width: 38.2%;
 }
+main .features textarea.form-control#id_question_text {
+    margin-bottom: 18px;
+    height: 100px;
+}
+main .features input.form-control#id_marks {
+    margin-bottom: 18px;
+    width: 10%;
+    float: right;
+}
+main .features input.form-control#id_answer_text {
+    width: 80%;
+    float: right;
+    margin-top: 10px;
+}
+main .features input.form-control#id_is_correct {
+    border-radius: 0.25em;
+    float: left;
+}
+
+main .features .form-group1 {
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    width: 38.2%;
+}
+main .features .form-group1 label{
+    float: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+main .features .form-group1 .check ol{
+    position: absolute;
+    top: 46%;
+    left: 3%;
+}
+
 
 /*Таблица тестов*/
 .table {

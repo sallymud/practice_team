@@ -12,13 +12,22 @@
     {% endif %}
     <div class="features">
         <h1>Форма по созданию теста</h1>
-        <form method ="post">
+        <form method="post">
             {% csrf_token %}
             {{ form.test_title }}
-            <br>
-            <br>
-            <br>
+            <div class="form-group1">
+                <label>Вопрос 1:</label>
+                {{ question_form.question_text }}
+                <label>Баллы:</label>
+                {{ question_form.marks }}
+                <br>
+                <br>
+                <label>Ответы:</label>
+                <br>
+            </div>
+            <br><br>
             <button class="btn btn-success" type="submit">Сохранить</button>
+            <br><br>
         </form>
     </div>
 {% endblock %}

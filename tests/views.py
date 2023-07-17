@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TestMake, Question, Answer, Results
-from .forms import TestForm
+from .forms import TestForm, QuestionForm, AnswerForm
 from django.contrib import messages
 
 
 
 def tests_home(request):
     return render(request, 'tests/tests_home.html')
+
 
 def create(request):
     if request.method == 'POST':
@@ -19,10 +20,30 @@ def create(request):
             # Значение уникальное, сохранить в базу данных
             test = TestMake(test_title=test_title)  # создаем экземпляр модели
             test.save()  # сохраняем в базу данных
+
+            question_text = request.POST.get('question_text')
+            marks = request.POST.get('marks')
+
+            question = Question(testmakers=test, question_text=question_text, marks=marks)
+            question.save()
+
+            answer_text = request.POST.getlist('answer_text')
+            is_correct = request.POST.getlist('is_correct')
+
+            for i in range(len(answer_text)):
+                answer = Answer(question=question, answer_text=answer_text[i], is_correct=is_correct[i])
+                answer.save()
+
             messages.success(request, 'Тест успешно создан.')
             return redirect('create')
+
     form = TestForm()
-    return render(request, 'tests/create.html', {'form': form})
+    question_form = QuestionForm()
+    answer_form = AnswerForm()
+
+    return render(request, 'tests/create.html',
+                  {'form': form, 'question_form': question_form, 'answer_form': answer_form})
+
 
 
 def test_list(request):
