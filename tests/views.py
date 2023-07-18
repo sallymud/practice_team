@@ -1,10 +1,125 @@
+from django.contrib.auth.decorators import login_required
+from django.db.models import F
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import TestMake, Question, Answer, Results
-from .forms import TestForm, QuestionForm, AnswerForm
+from django.urls import reverse
+
+from users.utils import paginateObjects
+from .models import Test, Question, Answer, Results, Choice
+#from .forms import TestForm, QuestionForm, AnswerForm
 from django.contrib import messages
 
 
+@login_required
+def tests(request):
+    tests = Test.objects.all()
+    custom_range, tests = paginateObjects(request,
+        tests, 3)
+    context = {'tests':tests, 'custom_range': custom_range}
+    return render(request, 'tests/test_list.html', context)
 
+@login_required
+def display_test(request, test_id):
+    test = get_object_or_404(Test, pk=test_id)
+    question = test.question_set.first()
+    return redirect(reverse('display_question',
+        kwargs={'test_id': test_id,
+        'question_id': question.pk}))
+
+@login_required
+def display_question(request, test_id, question_id):
+    test = get_object_or_404(Test, pk=test_id)
+    questions = test.question_set.all()
+    current_question, next_question = None, None
+    for ind, question in enumerate(questions):
+        if question.pk == question_id:
+            current_question = question
+            if ind != len(questions) - 1:
+                next_question = questions[ind + 1]
+    context = {'test': test,
+    'question': current_question,
+    'next_question': next_question}
+    return render(request,
+        'tests/test_detail.html',context)
+
+@login_required
+def grade_question(request, test_id, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    test = get_object_or_404(Test, pk=test_id)
+    can_answer = question.user_can_answer(request.user)
+    try:
+        if not can_answer:
+            return render(request,
+                'tests/gap.html',
+                {'question': question,
+                'error_message': 'Вы уже отвечали на этот вопрос.'})
+
+        if question.questiontype == 'single':
+            correct_answer = question.get_answers()
+            user_answer = question.answer_set.get(pk=request.POST['answer'])
+            choice = Choice(user=request.user,
+                question=question, answer=user_answer)
+            choice.save()
+            is_correct = correct_answer == user_answer
+            result, created = Results.objects.get_or_create(user=request.user,
+                test=test)
+            if is_correct is True:
+                result.correct = F('correct') + 1
+            else:
+                result.wrong = F('wrong') + 1
+            result.save()
+
+        elif question.questiontype == 'multiple':
+            correct_answer = question.get_answers()
+            answers_ids = request.POST.getlist('answer')
+            user_answers = []
+            if answers_ids:
+                for answer_id in answers_ids:
+                    user_answer = Answer.objects.get(pk=answer_id)
+                    user_answers.append(user_answer.name)
+                    choice = Choice(user=request.user,
+                        question=question, answer=user_answer)
+                    choice.save()
+                is_correct = correct_answer == user_answers
+                result, created = Results.objects.get_or_create(user=request.user,
+                    test=test)
+                if is_correct is True:
+                    result.correct = F('correct') + 1
+                else:
+                    result.wrong = F('wrong') + 1
+                result.save()
+
+    except:
+        return render(request, 'tests/gap.html', {'question': question})
+    return render(
+            request, 'tests/gap.html',
+            {'is_correct': is_correct,
+            'correct_answer': correct_answer,
+            'question': question})
+
+@login_required
+def test_results(request, test_id):
+    test = get_object_or_404(Test, pk=test_id)
+    questions = test.question_set.all()
+    results = Results.objects.filter(user=request.user,
+        test=test).values()
+    correct = [i['correct'] for i in results][0]
+    wrong = [i['wrong'] for i in results][0]
+    context = {'test': test,
+    'correct': correct,
+    'wrong': wrong,
+    'number': len(questions),
+    'skipped': len(questions) - (correct + wrong)}
+    return render(request, 'tests/results.html', context)
+
+
+def tests_home(request):
+    return render(request, 'tests/tests_home.html')
+
+
+
+
+
+"""
 def tests_home(request):
     return render(request, 'tests/tests_home.html')
 
@@ -12,13 +127,13 @@ def tests_home(request):
 def create(request):
     if request.method == 'POST':
         test_title = request.POST.get('test_title')
-        if TestMake.objects.filter(test_title=test_title).exists():
+        if Test.objects.filter(test_title=test_title).exists():
             # Значение уже существует, выдать ошибку
             messages.error(request, 'Тест с таким названием уже существует!')
             return redirect('create')
         else:
             # Значение уникальное, сохранить в базу данных
-            test = TestMake(test_title=test_title)  # создаем экземпляр модели
+            test = Test(test_title=test_title)  # создаем экземпляр модели
             test.save()  # сохраняем в базу данных
 
             question_text = request.POST.get('question_text')
@@ -108,7 +223,7 @@ def test_results(request, test_id):
         'total_marks': total_marks,
     }
 
-    return render(request, 'tests/test_results.html', data)
+    return render(request, 'tests/test_results.html', data)"""
 
 
 

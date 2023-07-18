@@ -1,24 +1,69 @@
-{% extends 'main/layout.html' %}
+
 
 {% block title %}Тест{% endblock %}
-
 {% block content %}
-  <div class="features">
-    <h1>{{ test.test_title }}</h1>
-    <form method="POST" action="">
-      {% csrf_token %}
-      {% for question in questions %}
-        <h3>{{ question.question_text }}</h3>
-        {% for answer in question.answer_set.all %}
-          <label>
-            <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
-            {{ answer.answer_text }}
-          </label><br>
-        {% endfor %}
-        <br>
-      {% endfor %}
-
-      <a href="{% url 'test_results' test_id=test_id %}" class="button">Завершить тест</a>
+    <form id="question-form"
+        action="{% url 'grade_question' test.id question.id %}"
+        method="post">
+        {% csrf_token %}
+        {% if question.questiontype == 'single' %}
+            <div class="form-control">Только один ответ здесь - правильный.</div>
+            {% for answer in question.answer_set.all %}
+                <div class="form-check">
+                    <input type="radio"
+                            name="answer"
+                            class="form-check-input"
+                            id="answer{{ forloop.counter }}"
+                            value="{{ answer.id }}"/>
+                    <label for="answer{{ forloop.counter }}" class="text-200">{{ answer.name }}</label>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="form-control">Здесь несколько правильных ответов.</div>
+            {% for answer in question.answer_set.all %}
+                <div class="form-check">
+                    <input type="checkbox"
+                           name="answer"
+                           class="form-check-input"
+                           id="answer{{ forloop.counter }}"
+                           value="{{ answer.id }}"/>
+                    <label for="answer{{ forloop.counter }}" class="text-200">{{ answer.name }}</label>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="text-center">
+            <input type="submit"
+                   value="Ответить"
+                   class="btn btn-warning rounded-pill mt-4"/>
+        </div>
     </form>
-  </div>
+    <div id="question-feedback" class="col-12 mt-3 text-200 text-center"></div>
+    <div class="my-4">
+        {% if next_question %}
+            <div class="mt-5">
+                <a href="{% url 'display_question' test.id next_question.id %}"
+                   class="btn btn-primary btn-md rounded-pill"><i class="fa fa-arrow-circle-right"></i> Следующий вопрос</a>
+            </div>
+        {% else %}
+            <div class="text-200">
+                Это последний вопрос теста. После ответа нажмите кнопку
+                <a href="{% url 'test_results' test.id %}"
+                   class="btn btn-primary rounded-pill btn-md">Посмотреть результаты</a>
+            </div>
+        {% endif %}
+    <script>
+     const form = document.getElementById("question-form");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(form.action, {method:'post', body: new FormData(form)})
+            .then((response) => response.text())
+            .then(text => {
+                document.getElementById("question-feedback").innerHTML = text;
+            });
+    });
+
+
+
+
+    </script>
 {% endblock %}

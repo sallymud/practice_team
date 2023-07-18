@@ -8,7 +8,9 @@ class Registration(UserCreationForm):
         'class': 'form-control',
         'placeholder': 'Почта'
     }))
-    creator = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'custom-checkbox'}))
+    creator = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-checkbox'}))
+    teacher = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'custom-checkbox'}))
+
     class Meta:
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'surname', 'email', 'password1', 'password2', 'creator', 'teacher')
