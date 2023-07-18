@@ -6,6 +6,7 @@ from users.views import test_creator, test_taker, test_grader
 urlpatterns = [
     path('', views.tests_home, name='tests_home'),
     path('tests/', views.tests, name='tests'),
+    path('create', views.create, name='create'),
     path('<int:test_id>/', views.display_test,
          name='display_test'),
     path('<int:test_id>/questions/<int:question_id>',

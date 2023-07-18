@@ -1,39 +1,39 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Результаты теста{% endblock %}
+
 {% block content %}
-    <div class="col-12">
-        <a class="btn btn-danger rounded-pill btn-sm mb-3"
-           href="{% url 'tests' %}"><i class="fa fa-arrow-circle-left"></i> К тестам</a>
-        <h6 class="fw-bold fs-1 text-200 my-3">{{ question.name }}</h6>
+    <div class="test_res">
+        <a class="btn btn-danger" href="{% url 'tests' %}"><i class="fa fa-arrow-circle-left"></i> К тестам</a>
     </div>
-    <div>
-        <h5 class="text-200 fs--1">Результаты пользователя {{ request.user.username }}</h5>
-        <h5 class="text-400">{{ test }}</h5>
-        <div class="table-responsive mt-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col" class="text-primary text-center">Показатели</th>
-                        <th scope="col" class="text-primary text-center">Результаты</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-200 fw-bold text-center">Всего вопросов в тесте</td>
-                        <td class="text-200 fw-bold text-center">{{ number }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-200 fw-bold text-center">Правильные ответы</td>
-                        <td class="text-200 fw-bold text-center">{{ correct }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-200 fw-bold text-center">Неправильные ответы</td>
-                        <td class="text-200 fw-bold text-center">{{ wrong }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-200 fw-bold text-center">Пропущено вопросов</td>
-                        <td class="text-200 fw-bold text-center">{{ skipped }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="features">
+        <h5>Результаты пользователя {{ request.user.username }}</h5>
+        <h5>"{{ test }}"</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Показатели</th>
+                    <th>Результаты</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-200 fw-bold text-center">Всего вопросов в тесте</td>
+                    <td class="text-200 fw-bold text-center">{{ number }}</td>
+                </tr>
+                <tr>
+                    <td class="text-200 fw-bold text-center">Правильные ответы</td>
+                    <td class="text-200 fw-bold text-center">{{ correct }}</td>
+                </tr>
+                <tr>
+                    <td class="text-200 fw-bold text-center">Неправильные ответы</td>
+                    <td class="text-200 fw-bold text-center">{{ wrong }}</td>
+                </tr>
+                <tr>
+                    <td class="text-200 fw-bold text-center">Пропущено вопросов</td>
+                    <td class="text-200 fw-bold text-center">{{ skipped }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 {% endblock %}

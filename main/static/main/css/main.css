@@ -1,5 +1,6 @@
 body {
     background: #b7d0f7;
+    overflow-x: hidden;
 }
 
 /* Боковая панель */
@@ -95,17 +96,25 @@ main .features p {
 }
 
 .error {
+    color: white;
     padding: 10px;
     border-radius: 5px;
     background-color: #DC3545;
 }
 
 .success {
+    color: white;
     padding: 10px;
     border-radius: 5px;
     background-color: #198754;
 }
 
+.warning {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f2791d;
+}
 .close-btn {
     float: right;
     cursor: pointer;
@@ -115,58 +124,60 @@ main .features p {
     color: white;
 }
 
-button.btn.btn-info {
+
+/*Кнопки*/
+.mt-5 .btn.btn-info {
     background-color: #0e3d8a;
     color: white;
     border-color: #0e3d8a;
 }
-
-button.btn.btn-info:active {
+.btn.btn-info {
+    background-color: #0e3d8a;
+    color: white;
+    border-color: #0e3d8a;
+}
+.test_res {
+    top: 50%;
+    left: 56%;
+    position: absolute;
+}
+.btn.btn-info:active {
     background-color: #0b3373;
     color: white;
     border-color: #0b3373;
 }
-
-main .features input.form-control#id_test_title {
+.finish {
+    bottom: 7%;
+    left: 44%;
     position: absolute;
-    top: 16%;
-    left: 40%;
-    width: 38.2%;
 }
-main .features textarea.form-control#id_question_text {
-    margin-bottom: 18px;
-    height: 100px;
-}
-main .features input.form-control#id_marks {
-    margin-bottom: 18px;
-    width: 10%;
-    float: right;
-}
-main .features input.form-control#id_answer_text {
-    width: 80%;
-    float: right;
-    margin-top: 10px;
-}
-main .features input.form-control#id_is_correct {
-    border-radius: 0.25em;
-    float: left;
+.next {
+    bottom: 7%;
+    left: 54%;
+    position: absolute;
 }
 
-main .features .form-group1 {
-    position: absolute;
-    top: 22%;
-    left: 40%;
-    width: 38.2%;
+
+/*Блоки уведомлений внутри теста*/
+.errorrr {
+    margin-left: 40%;
+    width: 20%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #DC3545;
 }
-main .features .form-group1 label{
-    float: left;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-main .features .form-group1 .check ol{
-    position: absolute;
-    top: 46%;
-    left: 3%;
+.errorrr .answer_list {
+    margin-top: 50px;
+    text-align: center;
+    width: 16%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #198754;
+    left: 51%;
+    height: 120px;
+    list-style: none;
 }
 
 
@@ -229,6 +240,7 @@ main .features .form-group1 .check ol{
   text-decoration: underline;
 }
 
+
 /*авватарка*/
 main .features img {
     width: 250px;
@@ -272,6 +284,7 @@ main .features input.form-control#inputGroupFile02 {
     width: 29%;
 }
 
+/*Кнопки в профиле*/
 .button-container button.btn.btn-info {
     padding-right: 10px;
 }
@@ -297,4 +310,68 @@ main .features input.form-control#inputGroupFile02 {
 
 .form-error ul li {
     margin-bottom: 10px;
+}
+
+/*Блок вопросов в тесте*/
+.question-container {
+    width: 80%;
+    margin-left: 8%;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: #eaf2ff;
+    border-radius: 20px 20px 20px 20px;
+    text-align: left;
+}
+
+/*Контакты*/
+.about-container {
+    display: inline-block;
+    margin: 25px;
+}
+
+.about-container h5 {
+    margin: 20px;
+}
+
+/*Формы для создания теста*/
+main .features input.form-control#id_name {
+    position: absolute;
+    top: 16%;
+    left: 40%;
+    width: 38.2%;
+}
+main .features textarea.form-control#id_question_text {
+    margin-bottom: 18px;
+    height: 100px;
+}
+main .features input.form-control#id_marks {
+    margin-bottom: 18px;
+    width: 10%;
+    float: right;
+}
+main .features input.form-control#id_answer_text {
+    width: 80%;
+    float: right;
+    margin-top: 10px;
+}
+main .features input.form-control#id_is_correct {
+    border-radius: 0.25em;
+    float: left;
+}
+
+main .features .form-group1 {
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    width: 38.2%;
+}
+main .features .form-group1 label{
+    float: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+main .features .form-group1 .check ol{
+    position: absolute;
+    top: 46%;
+    left: 3%;
 }

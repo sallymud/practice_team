@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from users.utils import paginateObjects
 from .models import Test, Question, Answer, Results, Choice
-#from .forms import TestForm, QuestionForm, AnswerForm
+from .forms import TestForm, QuestionForm, AnswerForm
 from django.contrib import messages
 
 
@@ -116,51 +116,41 @@ def tests_home(request):
     return render(request, 'tests/tests_home.html')
 
 
-
-
-
-"""
-def tests_home(request):
-    return render(request, 'tests/tests_home.html')
-
-
 def create(request):
     if request.method == 'POST':
-        test_title = request.POST.get('test_title')
-        if Test.objects.filter(test_title=test_title).exists():
-            # Значение уже существует, выдать ошибку
-            messages.error(request, 'Тест с таким названием уже существует!')
-            return redirect('create')
-        else:
-            # Значение уникальное, сохранить в базу данных
-            test = Test(test_title=test_title)  # создаем экземпляр модели
-            test.save()  # сохраняем в базу данных
+        test_form = TestForm(request.POST)
+        if test_form.is_valid():
+            name = test_form.cleaned_data['name']
+            if Test.objects.filter(name=name).exists():
+                # Значение уже существует, выдать ошибку
+                messages.error(request, 'Тест с таким названием уже существует!')
+                return redirect('create')
 
-            question_text = request.POST.get('question_text')
-            marks = request.POST.get('marks')
+            test = test_form.save()
 
-            question = Question(testmakers=test, question_text=question_text, marks=marks)
-            question.save()
+            questions = request.POST.getlist('name')
+            explanations = request.POST.getlist('explanation')
+            questiontypes = request.POST.getlist('questiontype')
+            answers = request.POST.getlist('answer_text[]')
+            is_correct = request.POST.getlist('is_correct[]')
 
-            answer_text = request.POST.getlist('answer_text')
-            is_correct = request.POST.getlist('is_correct')
+            for i in range(len(questions)):
+                question = Question(test=test, questiontype=questiontypes[i], name=questions[i], explanation=explanations[i])
+                question.save()
 
-            for i in range(len(answer_text)):
-                answer = Answer(question=question, answer_text=answer_text[i], is_correct=is_correct[i])
-                answer.save()
+                for j in range(i*2, (i*2)+2):
+                    answer = Answer(question=question, answer_text=answers[j], is_correct=bool(int(is_correct[j])))
+                    answer.save()
 
             messages.success(request, 'Тест успешно создан.')
             return redirect('create')
+    else:
+        test_form = TestForm()
 
-    form = TestForm()
-    question_form = QuestionForm()
-    answer_form = AnswerForm()
-
-    return render(request, 'tests/create.html',
-                  {'form': form, 'question_form': question_form, 'answer_form': answer_form})
+    return render(request, 'tests/create.html', {'test_form': test_form})
 
 
-
+"""
 def test_list(request):
     tests = TestMake.objects.all()
     return render(request, 'tests/test_list.html', {'tests': tests})

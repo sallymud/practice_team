@@ -49,7 +49,7 @@ class LoginUserForm(AuthenticationForm):
     username = forms.CharField(widget =
     forms.TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'Имя пользователя'
+        'placeholder': 'Логин'
     }),
     label = ''
     )

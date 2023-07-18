@@ -14,8 +14,8 @@
             <tbody>
                 {% for test in tests %}
                     <tr>
-                        <td><a href="{% url 'display_test' test.id %}">{{ test.created_at }}{{ test.name }}</a></td>
-                        <td>{{ correct }}</td>
+                        <td><a href="{% url 'display_test' test.id %}">{{ test.name }}</a></td>
+                        <td>{{ correct }}/{{ number }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
