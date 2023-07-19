@@ -334,30 +334,40 @@ main .features input.form-control#inputGroupFile02 {
 }
 
 /*Формы для создания теста*/
-main .features input.form-control#id_name {
-    position: absolute;
-    top: 16%;
-    left: 40%;
-    width: 38.2%;
+main .features input.form-control#name {
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-bottom: 20px;
+    width: 40%;
 }
-main .features textarea.form-control#id_question_text {
-    margin-bottom: 18px;
-    height: 100px;
-}
-main .features input.form-control#id_marks {
-    margin-bottom: 18px;
-    width: 10%;
-    float: right;
-}
-main .features input.form-control#id_answer_text {
+
+#questions {
     width: 80%;
-    float: right;
-    margin-top: 10px;
+    margin-left: 8%;
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: #eaf2ff;
+    border-radius: 20px 20px 20px 20px;
+    text-align: left;
 }
-main .features input.form-control#id_is_correct {
-    border-radius: 0.25em;
-    float: left;
+
+#questions .question input{
+    margin-bottom: 10px;
 }
+
+#questions .question select{
+    width: 20%;
+    margin-bottom: 10px;
+}
+#questions .question button{
+    margin-bottom: 10px;
+    margin-left: 88%;
+}
+#questions input.form-check-input{
+    margin-bottom: 10px;
+}
+
 
 main .features .form-group1 {
     position: absolute;

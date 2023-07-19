@@ -14,72 +14,64 @@
         <h1>Форма по созданию теста</h1>
         <form method="post">
             {% csrf_token %}
-            <label for="name">Название теста:</label>
-            <input type="text" id="name" name="name" required>
-
-            <h2>Вопросы:</h2>
+            <input class="form-control" type="text" placeholder="Название теста" id="name" name="name" required>
 
             <div id="questions">
-                <!-- Dynamic form fields for questions -->
                 <div class="question">
-                    <label for="question-1">Текст вопроса:</label>
-                    <input type="text" id="question-1" name="questions[]" required>
-
-                    <label for="explanation-1">Правильный ответ:</label>
-                    <input type="text" id="explanation-1" name="explanations[]" required>
-
-                    <label for="questiontype-1">Тип вопроса:</label>
-                    <select id="questiontype-1" name="questiontypes[]" required>
+                    <h4>Вопрос: </h4>
+                    <input class="form-control" type="text" placeholder="Текст вопроса" id="question-1" name="questions[]" required>
+                    <input class="form-control" type="text" placeholder="Правильный ответ" id="explanation-1" name="explanations[]" required>
+                    <select class="form-select" id="questiontype-1" name="questiontypes[]" required>
                         <option value="single">Одиночный выбор</option>
                         <option value="multiple">Множественный выбор</option>
                     </select>
-
-                    <label for="answer-1-1">Ответ 1:</label>
-                    <input type="text" id="answer-1-1" name="answers_1[]" required>
-                    <input type="checkbox" id="correct-1-1" name="correct_1[]" value="1">
-                    <label for="correct-1-1">Верный ответ</label>
-
-                    <button type="button" onclick="addAnswerField(1)">Добавить ответ</button>
+                    <button class="btn btn-secondary" type="button" onclick="addAnswerField(1)">Добавить ответ</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" placeholder="Ответ 1" type="text" id="answer-1-1" name="answers_1[]" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-check-input" type="checkbox" id="correct-1-1" name="correct_1[]" value="1">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <button type="button" onclick="addQuestionField()">Добавить вопрос</button>
+            <button class="btn btn-secondary" type="button" onclick="addQuestionField()">Добавить вопрос</button>
             <button class="btn btn-success" type="submit">Сохранить</button>
         </form>
     </div>
     <script>
-        function addQuestionField() {
+        function addQuestionField()
+        {
             var questionCount = document.getElementsByClassName('question').length + 1;
 
             var questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
 
-            var questionLabel = document.createElement('label');
-            questionLabel.setAttribute('for', 'question-' + questionCount);
-            questionLabel.innerHTML = 'Текст вопроса:';
+            var questionHeader = document.createElement('h4');
+            questionHeader.innerHTML = 'Вопрос:';
 
             var questionInput = document.createElement('input');
             questionInput.setAttribute('type', 'text');
+            questionInput.setAttribute('placeholder', 'Текст вопроса');
             questionInput.setAttribute('id', 'question-' + questionCount);
             questionInput.setAttribute('name', 'questions[]');
+            questionInput.classList.add('form-control');
             questionInput.required = true;
-
-            var explanationLabel = document.createElement('label');
-            explanationLabel.setAttribute('for', 'explanation-' + questionCount);
-            explanationLabel.innerHTML = 'Правильный ответ:';
 
             var explanationInput = document.createElement('input');
             explanationInput.setAttribute('type', 'text');
+            explanationInput.setAttribute('placeholder', 'Правильный ответ');
             explanationInput.setAttribute('id', 'explanation-' + questionCount);
             explanationInput.setAttribute('name', 'explanations[]');
+            explanationInput.classList.add('form-control');
             explanationInput.required = true;
-
-            var questionTypeLabel = document.createElement('label');
-            questionTypeLabel.setAttribute('for', 'questiontype-' + questionCount);
-            questionTypeLabel.innerHTML = 'Тип вопроса:';
 
             var questionTypeSelect = document.createElement('select');
             questionTypeSelect.setAttribute('id', 'questiontype-' + questionCount);
             questionTypeSelect.setAttribute('name', 'questiontypes[]');
+            questionTypeSelect.classList.add('form-select');
             questionTypeSelect.required = true;
 
             var singleOption = document.createElement('option');
@@ -93,14 +85,15 @@
             questionTypeSelect.appendChild(singleOption);
             questionTypeSelect.appendChild(multipleOption);
 
-            var answerLabel = document.createElement('label');
-            answerLabel.setAttribute('for', 'answer-' + questionCount + '-1');
-            answerLabel.innerHTML = 'Ответ 1:';
+            var answerDiv = document.createElement('div');
+            answerDiv.classList.add('row');
 
             var answerInput = document.createElement('input');
             answerInput.setAttribute('type', 'text');
+            answerInput.setAttribute('placeholder', 'Ответ 1');
             answerInput.setAttribute('id', 'answer-' + questionCount + '-1');
             answerInput.setAttribute('name', 'answers_' + questionCount + '[]');
+            answerInput.classList.add('form-control');
             answerInput.required = true;
 
             var correctCheckbox = document.createElement('input');
@@ -108,59 +101,70 @@
             correctCheckbox.setAttribute('id', 'correct-' + questionCount + '-1');
             correctCheckbox.setAttribute('name', 'correct_' + questionCount + '[]');
             correctCheckbox.setAttribute('value', '1');
+            correctCheckbox.classList.add('form-check-input');
 
-            var correctLabel = document.createElement('label');
-            correctLabel.setAttribute('for', 'correct-' + questionCount + '-1');
-            correctLabel.innerHTML = 'Верный ответ';
+            var answerDivCol = document.createElement('div');
+            answerDivCol.classList.add('col-md-6');
+
+            answerDivCol.appendChild(answerInput);
+
+            var correctDivCol = document.createElement('div');
+            correctDivCol.classList.add('col-md-6');
+
+            correctDivCol.appendChild(correctCheckbox);
+
+            answerDiv.appendChild(answerDivCol);
+            answerDiv.appendChild(correctDivCol);
 
             var addAnswerButton = document.createElement('button');
             addAnswerButton.setAttribute('type', 'button');
             addAnswerButton.setAttribute('onclick', 'addAnswerField(' + questionCount + ')');
             addAnswerButton.innerHTML = 'Добавить ответ';
+            addAnswerButton.classList.add('btn', 'btn-secondary');
 
-            questionDiv.appendChild(questionLabel);
+            questionDiv.appendChild(questionHeader);
             questionDiv.appendChild(questionInput);
-            questionDiv.appendChild(explanationLabel);
             questionDiv.appendChild(explanationInput);
-            questionDiv.appendChild(questionTypeLabel);
             questionDiv.appendChild(questionTypeSelect);
-            questionDiv.appendChild(answerLabel);
-            questionDiv.appendChild(answerInput);
-            questionDiv.appendChild(correctCheckbox);
-            questionDiv.appendChild(correctLabel);
             questionDiv.appendChild(addAnswerButton);
+            questionDiv.appendChild(answerDiv);
 
             document.getElementById('questions').appendChild(questionDiv);
         }
 
-        function addAnswerField(questionIndex) {
+        function addAnswerField(questionIndex)
+        {
             var answerCount = document.getElementsByName('answers_' + questionIndex + '[]').length + 1;
 
             var answerDiv = document.createElement('div');
-
-            var answerLabel = document.createElement('label');
-            answerLabel.setAttribute('for', 'answer-' + questionIndex + '-' + answerCount);
-            answerLabel.innerHTML = 'Ответ ' + answerCount + ':';
+            answerDiv.classList.add('row');
 
             var answerInput = document.createElement('input');
             answerInput.setAttribute('type', 'text');
+            answerInput.setAttribute('placeholder', 'Ответ ' + answerCount);
             answerInput.setAttribute('id', 'answer-' + questionIndex + '-' + answerCount);
             answerInput.setAttribute('name', 'answers_' + questionIndex + '[]');
+            answerInput.classList.add('form-control');
 
             var correctCheckbox = document.createElement('input');
             correctCheckbox.setAttribute('type', 'checkbox');
             correctCheckbox.setAttribute('id', 'correct-' + questionIndex + '-' + answerCount);
             correctCheckbox.setAttribute('name', 'correct_' + questionIndex + '[]');
             correctCheckbox.setAttribute('value', answerCount);
+            correctCheckbox.classList.add('form-check-input');
 
-            var correctLabel = document.createElement('label');
-            correctLabel.setAttribute('for', 'correct-' + questionIndex + '-' + answerCount);
-            correctLabel.innerHTML = 'Верный ответ';
+            var answerDivCol = document.createElement('div');
+            answerDivCol.classList.add('col-md-6');
 
-            answerDiv.appendChild(answerLabel);
-            answerDiv.appendChild(answerInput);
-            answerDiv.appendChild(correctCheckbox);
-            answerDiv.appendChild(correctLabel);
+            answerDivCol.appendChild(answerInput);
+
+            var correctDivCol = document.createElement('div');
+            correctDivCol.classList.add('col-md-6');
+
+            correctDivCol.appendChild(correctCheckbox);
+
+            answerDiv.appendChild(answerDivCol);
+            answerDiv.appendChild(correctDivCol);
 
             var questionDiv = document.getElementsByClassName('question')[questionIndex - 1];
             questionDiv.appendChild(answerDiv);

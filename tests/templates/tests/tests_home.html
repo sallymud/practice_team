@@ -3,6 +3,13 @@
 {% block title %}Тесты{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}  <span class="close-btn" onclick="this.parentElement.style.display = 'none';">&times;</span></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="features">
         <h1>Тест</h1>
         <a href="{% url 'tests' %}"><button type="button" class="btn btn-info">Список тестов</button></a>

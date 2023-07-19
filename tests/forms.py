@@ -6,13 +6,6 @@ class TestForm(ModelForm):
         model = Test
         fields = ['name']
 
-        widgets = {
-            "name": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Название теста'
-            })
-        }
-
 class QuestionForm(ModelForm):
     class Meta:
         model = Question

@@ -21,6 +21,10 @@ def tests(request):
 def display_test(request, test_id):
     test = get_object_or_404(Test, pk=test_id)
     question = test.question_set.first()
+    if question is None:
+        messages.error(request, 'Тест не содержит ни одного вопроса!')
+        return redirect('tests_home')
+
     return redirect(reverse('display_question',
         kwargs={'test_id': test_id,
         'question_id': question.pk}))
